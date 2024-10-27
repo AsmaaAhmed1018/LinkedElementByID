@@ -1,0 +1,127 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#region Spinnre Button-->
+    <SolidColorBrush x:Key="ButtonSpinner.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="ButtonSpinner.IsDefaulted.Background" Color="White" />
+    <SolidColorBrush x:Key="ButtonSpinner.IsDefaulted.Forground" Color="Black" />
+    <SolidColorBrush x:Key="ButtonSpinner.MouseOver.Background" Color="Gray" />
+    <SolidColorBrush x:Key="ButtonSpinner.MouseOver.Forground" Color="White" />
+    <SolidColorBrush x:Key="ButtonSpinner.Pressed.Background" Color="Black" />
+    <SolidColorBrush x:Key="ButtonSpinner.Pressed.Forground" Color="White" />
+    <SolidColorBrush x:Key="ButtonSpinner.Disabled.Background" Color="White" />
+    <SolidColorBrush x:Key="ButtonSpinner.Disabled.Foreground" Color="Black" />
+    <ControlTemplate x:Key="ButtonSpinner" TargetType="{x:Type ButtonBase}">
+        <Border
+            x:Name="border"
+            Background="{DynamicResource ButtonSpinner.IsDefaulted.Background}"
+            BorderBrush="{StaticResource ButtonSpinner.Border}"
+            BorderThickness="0"
+            CornerRadius="2"
+            SnapsToDevicePixels="true">
+            <ContentPresenter
+                x:Name="contentPresenter"
+                Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Focusable="False"
+                RecognizesAccessKey="True"
+                SnapsToDevicePixels="True"
+                TextElement.FontSize="15"
+                TextElement.FontWeight="Medium"
+                TextElement.Foreground="{DynamicResource ButtonSpinner.IsDefaulted.Forground}" />
+
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Button.IsDefaulted" Value="true">
+                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonSpinner.Border}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonSpinner.MouseOver.Background}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonSpinner.Border}" />
+                <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource ButtonSpinner.MouseOver.Forground}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonSpinner.Pressed.Background}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonSpinner.Border}" />
+                <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource ButtonSpinner.Pressed.Forground}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonSpinner.Disabled.Background}" />
+                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonSpinner.Border}" />
+                <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource ButtonSpinner.Disabled.Foreground}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--#endregion-->
+    <!--#region Flat Button-->
+    <Style x:Key="FocusVisual">
+    </Style>
+    <SolidColorBrush x:Key="Button.Border" Color="Transparent" />
+    <SolidColorBrush x:Key="Button.IsDefaulted.Background" Color="White" />
+    <SolidColorBrush x:Key="Button.IsDefaulted.Forground" Color="Black" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="Gray" />
+    <SolidColorBrush x:Key="Button.MouseOver.Forground" Color="White" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="Black" />
+    <SolidColorBrush x:Key="Button.Pressed.Forground" Color="White" />
+    <SolidColorBrush x:Key="Button.Disabled.Background" Color="White" />
+    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="Black" />
+    <Style x:Key="ButtonStyleFlat" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+            x:Name="border" 
+                    IsEnabled="True"
+            Background="{DynamicResource Button.IsDefaulted.Background}"
+            BorderBrush="{StaticResource Button.Border}"
+            BorderThickness="0"
+            CornerRadius="5"
+            SnapsToDevicePixels="true">
+                        <ContentPresenter
+                x:Name="contentPresenter"
+                Margin="{TemplateBinding Padding}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Focusable="False"
+                RecognizesAccessKey="True"
+                SnapsToDevicePixels="True"
+                TextElement.FontSize="13"
+                TextElement.FontWeight="Medium"
+                TextElement.Foreground="{DynamicResource Button.IsDefaulted.Forground}" />
+
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsDefaulted" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Border}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.MouseOver.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Border}" />
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.MouseOver.Forground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Border}" />
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Disabled.Foreground}" />
+                        </Trigger>
+                        <Trigger  Property="IsPressed" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Border}" />
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="{StaticResource Button.Pressed.Forground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+
+
+
+    <!--#region All Buttom-->
+    <!--#endregion-->
+</ResourceDictionary>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>LinkedElementByID</Name>
+		<Assembly>LinkedElements\LinkedElementByID.dll</Assembly>
+		<AddInId>45472B19-842C-485B-985A-032EBB875C27</AddInId>
+		<FullClassName>LinkedElementByID.Application.ExternalApp</FullClassName>
+		<Text>LinkedElementByID</Text>
+		<Description>LinkedElementByID</Description>
+		<VendorId>In.Studio</VendorId>
+		<VendorDescription>In.Studio</VendorDescription>
+		<VisibilityMode>NotVisibleWhenNoActiveDocument</VisibilityMode>
+	</AddIn>
+</RevitAddIns>

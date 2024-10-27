@@ -1,0 +1,277 @@
+﻿<Window
+    x:Class="LinkedElementByID.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:LinkedElementByID.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src="clr-namespace:DLL"
+    Title="LinkedElements"
+    MinWidth="450"
+    MinHeight="230"
+    MaxWidth="450"
+    MaxHeight="230"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Stretch"
+    AllowsTransparency="True"
+    Background="Transparent"
+    MouseDown="Window_MouseDown"
+    ResizeMode="CanResize"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LinkedElementByID;component/Styles/Main_ResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Style="{StaticResource Main_Border}">
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="0.1*" />
+                <RowDefinition Height="2.5*" />
+            </Grid.RowDefinitions>
+            <!--#region Header Bar-->
+            <StackPanel Grid.Row="0" Margin="0,0,0,0">
+                <Border
+                    x:Name="Hedder_Panel"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Height="40"
+                    BorderBrush="White"
+                    BorderThickness="0,0,0,1">
+                    <Grid Margin="10,5,10,5">
+                        <Grid.ColumnDefinitions>
+                            <!--  Left  -->
+                            <ColumnDefinition Width=".60*" />
+                            <!--  Center  -->
+                            <ColumnDefinition />
+                            <!--  Right  -->
+                            <ColumnDefinition Width=".60*" />
+                        </Grid.ColumnDefinitions>
+                        <!--  Center Area  -->
+
+                        <TextBlock
+                            x:Name="Info_Hedder"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Padding="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="19"
+                            Style="{StaticResource TextBlock_Header}"
+                            Text="Linked Elements" />
+                        <StackPanel
+                            x:Name="Logo_win"
+                            Grid.Column="0"
+                            Orientation="Horizontal">
+                            <Image
+                                x:Name="IconTool"
+                                Height="15"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Cursor="Hand"
+                                Source="{Binding ImageSource}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:CallMethodAction MethodName="ImageClick" TargetObject="{Binding .}" />
+                                        <i:InvokeCommandAction />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
+                        </StackPanel>
+                        <!--  Left Area  -->
+                        <StackPanel
+                            x:Name="Logwin"
+                            Grid.Column="0"
+                            Orientation="Horizontal" />
+                        <!--  Right Area  -->
+                        <StackPanel
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            FlowDirection="RightToLeft"
+                            Orientation="Horizontal">
+                            <Ellipse
+                                x:Name="Close_Tip"
+                                Cursor="Hand"
+                                MouseDown="CloseApp_Click"
+                                Style="{StaticResource Ellipse_Bt}"
+                                Tag="Close">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1" Color="#FFB84646" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse
+                                x:Name="Max_Tip"
+                                Cursor="Hand"
+                                MouseDown="Maximize_Click"
+                                Style="{StaticResource Ellipse_Bt}"
+                                Tag="Maximize">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1" Color="#FFFFF33D" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Ellipse
+                                x:Name="Mini_Tip"
+                                Cursor="Hand"
+                                MouseDown="Minimize_Click"
+                                Style="{StaticResource Ellipse_Bt}"
+                                Tag="Minimize">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Offset="1" Color="#FF62C369" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+            <!--#endregion-->
+            <!--#region Insert IDs-->
+            <!--  Search Box  -->
+            <GroupBox
+                Grid.Row="1"
+                BorderThickness="0.5"
+                Foreground="White"
+                Header=" Select Element By ID">
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="1.2*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Cursor="None"
+                        FontSize="14"
+                        Foreground="White"
+                        Text="1- Insert Element ID :" />
+                    <TextBox
+                        Name="ElementIDText"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Width="auto"
+                        Height="25"
+                        Margin="35,0,0,0"
+                        VerticalContentAlignment="Center"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding textBoxElements.ElementIDText}" />
+                    <!--  Search Button  -->
+                    <Button
+                        Grid.Column="2"
+                        Width="100"
+                        Height="25"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Command="{Binding SearchElementID}"
+                        Content="Show Element"
+                        Style="{StaticResource ButtonStyleFlat}" />
+                    <TextBlock
+                        Grid.Row="1"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Cursor="None"
+                        FontSize="14"
+                        Text="Select your Revit link :" />
+                    <ComboBox
+                        x:Name="AllRevitLinks"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Height="25"
+                        MinWidth="245"
+                        Margin="35,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        ItemsSource="{Binding revitLinksCombox}"
+                        SelectedIndex="0"
+                        Style="{DynamicResource ResourceKey=Asmaa}" />
+                </Grid>
+            </GroupBox>
+            <!--#endregion-->
+            <!--#region Get IDs-->
+            <!--  Pick Elements Box  -->
+            <GroupBox
+                Grid.Row="3"
+                BorderThickness="0.5"
+                Foreground="White"
+                Header=" Get Element ID">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="1.4*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        Foreground="White"
+                        Text="2- Pick Linked Elements :" />
+
+                    <!--  Get IDs Button  -->
+                    <Button
+                        Grid.Column="1"
+                        Width="240"
+                        Height="25"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Command="{Binding GetElementID}"
+                        Content="Get Selection Elements IDs"
+                        Style="{StaticResource ButtonStyleFlat}" />
+
+                    <!--  Show Element ID  -->
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="1.7*" />
+                            <ColumnDefinition Width="1.5*" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,0"
+                            HorizontalAlignment="Left"
+                            Foreground="White"
+                            Text="Element ID: " />
+                        <TextBlock
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Cursor="IBeam"
+                            Foreground="White"
+                            Text="{Binding textBoxElements.LinkedElementID}" />
+                    </Grid>
+                </Grid>
+            </GroupBox>
+            <!--#endregion-->
+        </Grid>
+    </Border>
+</Window>
